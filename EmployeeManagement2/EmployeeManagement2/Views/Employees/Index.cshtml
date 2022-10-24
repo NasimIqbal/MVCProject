@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EmployeeManagement2.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        alert("hello");
+        $.ajax({
+            Type: "GET",
+            url: "http://localhost:54661/api/Employees",
+            dataType: "json",
+            contentType:"application/json",
+            success: function(data){
+                console.log(data);
+                var listval = "";
+                var i;
+                for (i = 0; i < data.length; ++i) {
+                    listval += "<li>" + data[i].Name + data[i].Salary + "</li>"
+
+                }
+                $("#emplst").append(listval);
+                alert("Employees record added successfully");
+            }
+
+
+
+        });
+
+
+    });
+</script>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<ul id="emplst">
+    
+
+</ul>
